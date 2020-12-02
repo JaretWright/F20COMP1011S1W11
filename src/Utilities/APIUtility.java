@@ -25,13 +25,15 @@ public class APIUtility {
      * the OMDB API to receive a JSON file.  The file will
      * be written to movieInfo.json
      */
-    public static void callOmdbAPI(String searchText) throws IOException, InterruptedException {
+    public static OMDBJsonResponse callOmdbAPI(String searchText) throws IOException, InterruptedException {
         //this is the same as what you would put in a browser if you wanted to
         //call the API
         String uri = "http://www.omdbapi.com/?apikey=4a1010ab&s="+searchText;
 
         String jsonLocation = "src/Utilities/movieInfo.json";
 
+        //This will generate the HTTP request and store
+        //the resulting JSON file in path defined by jsonLocation
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                                         .uri(URI.create(uri))
@@ -39,7 +41,7 @@ public class APIUtility {
         HttpResponse<Path> response = client.send(request, HttpResponse.BodyHandlers
                                                             .ofFile(Paths.get(jsonLocation)));
 
-        OMDBJsonResponse movieResponse = getMoviesFromJSON(new File(jsonLocation));
+        return getMoviesFromJSON(new File(jsonLocation));
     }
 
 
