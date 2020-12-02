@@ -16,6 +16,7 @@ public class APIUtility {
     public static OMDBJsonResponse getMoviesFromJSON(File jsonFile)
     {
         Gson gson = new Gson();
+        OMDBJsonResponse searchResult = null;
 
         //using try "with resources"
         try(
@@ -23,10 +24,11 @@ public class APIUtility {
                 JsonReader jsonReader = new JsonReader(fileReader);
                 )
         {
-            OMDBJsonResponse searchResult = gson.fromJson(jsonReader, OMDBJsonResponse.class);
+            searchResult = gson.fromJson(jsonReader, OMDBJsonResponse.class);
         } catch (Exception e)
         {
             e.printStackTrace();
         }
+        return searchResult;
     }
 }
