@@ -2,4 +2,16 @@
 {
     -fx-background-color: linear-gradient(from 10px 10px to 500px 500px,
                             #29b6f6,#455a64);
+    -fx-font-size: 20pt;
+}
+
+#results
+{
+    -fx-text-fill: #ffffff;
+}
+
+#stackPane
+{
+    -fx-background-color: #718792;
+    -fx-padding: 10px;
 }
